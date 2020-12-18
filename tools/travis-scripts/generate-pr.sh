@@ -48,9 +48,9 @@ if [ "$TRAVIS_OS_NAME" != "linux" ]; then
   exit 0
 fi
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-  exit 0
-fi
+# if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+#   # exit 0
+# fi
 
 
 # 1. Generate js bindings
