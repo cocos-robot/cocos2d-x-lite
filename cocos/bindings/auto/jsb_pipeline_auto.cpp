@@ -3154,6 +3154,25 @@ bool js_register_pipeline_ShadowFlow(se::Object* obj)
 se::Object* __jsb_cc_pipeline_ShadowStage_proto = nullptr;
 se::Class* __jsb_cc_pipeline_ShadowStage_class = nullptr;
 
+static bool js_pipeline_ShadowStage_clearFramebuffer(se::State& s)
+{
+    cc::pipeline::ShadowStage* cobj = SE_THIS_OBJECT<cc::pipeline::ShadowStage>(s);
+    SE_PRECONDITION2(cobj, false, "js_pipeline_ShadowStage_clearFramebuffer : Invalid Native Object");
+    const auto& args = s.args();
+    size_t argc = args.size();
+    CC_UNUSED bool ok = true;
+    if (argc == 1) {
+        HolderType<cc::pipeline::Camera*, false> arg0 = {};
+        ok &= sevalue_to_native(args[0], &arg0, s.thisObject());
+        SE_PRECONDITION2(ok, false, "js_pipeline_ShadowStage_clearFramebuffer : Error processing arguments");
+        cobj->clearFramebuffer(arg0.value());
+        return true;
+    }
+    SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc, 1);
+    return false;
+}
+SE_BIND_FUNC(js_pipeline_ShadowStage_clearFramebuffer)
+
 static bool js_pipeline_ShadowStage_setFramebuffer(se::State& s)
 {
     cc::pipeline::ShadowStage* cobj = SE_THIS_OBJECT<cc::pipeline::ShadowStage>(s);
@@ -3243,6 +3262,7 @@ bool js_register_pipeline_ShadowStage(se::Object* obj)
 {
     auto cls = se::Class::create("ShadowStage", obj, __jsb_cc_pipeline_RenderStage_proto, _SE(js_pipeline_ShadowStage_constructor));
 
+    cls->defineFunction("clearFramebuffer", _SE(js_pipeline_ShadowStage_clearFramebuffer));
     cls->defineFunction("setFramebuffer", _SE(js_pipeline_ShadowStage_setFramebuffer));
     cls->defineFunction("setUseData", _SE(js_pipeline_ShadowStage_setUseData));
     cls->defineStaticFunction("getInitializeInfo", _SE(js_pipeline_ShadowStage_getInitializeInfo));
