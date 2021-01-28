@@ -186,6 +186,7 @@ bool js_register_cc_pipeline_ShadowStage(se::Object* obj);
 bool register_all_pipeline(se::Object* obj);
 
 JSB_REGISTER_OBJECT_TYPE(cc::pipeline::ShadowStage);
+SE_DECLARE_FUNC(js_pipeline_ShadowStage_clearFramebuffer);
 SE_DECLARE_FUNC(js_pipeline_ShadowStage_setFramebuffer);
 SE_DECLARE_FUNC(js_pipeline_ShadowStage_setUseData);
 SE_DECLARE_FUNC(js_pipeline_ShadowStage_getInitializeInfo);
